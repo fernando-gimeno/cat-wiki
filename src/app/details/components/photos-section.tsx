@@ -14,10 +14,11 @@ export default function PhotosSection({
       <div className="grid grid-cols-1 justify-items-center sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8">
         {photos.map((photo: SearchResponse) => (
           <Image
+            key={photo.id}
             src={photo.url}
             width={photo.width}
             height={photo.height}
-            alt={photo.id}
+            alt="Photo of breed"
             className="aspect-square object-cover"
           />
         ))}

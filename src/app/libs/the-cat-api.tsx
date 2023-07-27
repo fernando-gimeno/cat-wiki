@@ -8,6 +8,8 @@ const headers = new Headers({
   "x-api-key": `${process.env.CAT_API_KEY}`,
 });
 
+const baseUrl = "https://api.thecatapi.com/v1";
+
 export async function getBreedById(id: string): Promise<BreedResponse> {
   const res = await fetch(`https://api.thecatapi.com/v1/images/${id}`, {
     cache: "no-store",

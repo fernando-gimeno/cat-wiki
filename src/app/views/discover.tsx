@@ -16,14 +16,15 @@ export default async function Discover() {
       <div className="grid grid-cols-2 justify-center items-center justify-items-center gap-y-8 gap-x-4 sm:grid-cols-3 md:grid-cols-4">
         {randomImages.map((image: BreedResponse) => {
           return (
-            <div>
+            <div key={image.id}>
               <Link href={`/details/${image.breeds[0].reference_image_id}`}>
                 <Image
                   className="aspect-square object-cover rounded-2xl"
                   src={image.url}
                   width={image.width}
                   height={image.height}
-                  alt="Image 2"
+                  alt="Cat image"
+                  key={image.id}
                 />
                 <p className="font-semibold text-xs text-[#291507]">
                   {image.breeds[0].name}
