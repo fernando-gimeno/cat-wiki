@@ -5,7 +5,7 @@ import { getBreedById } from "./libs/the-cat-api";
 
 export default async function Home() {
   return (
-    <main className="mx-4 sm:px-24">
+    <main className="mx-4 sm:mx-8 md:mx-12">
       <Hero />
       <Discover />
       <WhyShouldHaveCat />

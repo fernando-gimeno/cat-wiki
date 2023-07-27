@@ -46,10 +46,12 @@ export default function Hero() {
       <h2 className="font-medium text-xs w-40 text-white mt-2 mb-6 sm:text-2xl sm:mb-8 sm:w-80">
         Get to know more about your cat breed
       </h2>
-      <input
-        type="text"
-        className="w-32 h-8 px-2 rounded-full font-medium text-xs sm:h-16 sm:w-80 sm:text-2xl sm:px-4"
-      />
+      <form action="" method="GET">
+        <input
+          type="text"
+          className="w-32 h-8 px-2 rounded-full font-medium text-xs sm:h-16 sm:w-80 sm:text-2xl sm:px-4"
+        />
+      </form>
     </div>
   );
 }
