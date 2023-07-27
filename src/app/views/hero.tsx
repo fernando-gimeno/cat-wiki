@@ -1,4 +1,8 @@
-export default function Hero() {
+import Search from "../components/search";
+import { getBreeds } from "../libs/the-cat-api";
+
+export default async function Hero() {
+  const breeds = await getBreeds();
   return (
     <div className="rounded-t-3xl w-full bg-hero-pattern bg-cover bg-right-top bg-no-repeat p-8 sm:h-[25rem] sm:px-24 md:bg-hero-pattern-md lg:bg-hero-pattern-lg">
       <svg
@@ -46,12 +50,7 @@ export default function Hero() {
       <h2 className="font-medium text-xs w-40 text-white mt-2 mb-6 sm:text-2xl sm:mb-8 sm:w-80">
         Get to know more about your cat breed
       </h2>
-      <form action="" method="GET">
-        <input
-          type="text"
-          className="w-32 h-8 px-2 rounded-full font-medium text-xs sm:h-16 sm:w-80 sm:text-2xl sm:px-4"
-        />
-      </form>
+      <Search breeds={breeds} />
     </div>
   );
 }

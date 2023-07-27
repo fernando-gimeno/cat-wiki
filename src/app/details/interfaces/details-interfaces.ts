@@ -45,6 +45,12 @@ export interface Breed {
   wikipedia_url: string;
   hypoallergenic: HabilityLevel;
   reference_image_id: HabilityLevel;
+  image?: {
+    id: string;
+    width: number;
+    height: number;
+    url: string;
+  };
 }
 
 export interface Weight {

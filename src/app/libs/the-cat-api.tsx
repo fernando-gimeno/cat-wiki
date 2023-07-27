@@ -26,13 +26,17 @@ export async function getPhotosByBreed(
   return res.json();
 }
 
-export async function getBreedsWithLimit(limit: number): Promise<Breed[]> {
-  const res = await fetch(`https://api.thecatapi.com/v1/breeds?limit=${limit}`);
+export async function getBreeds(): Promise<Breed[]> {
+  const res = await fetch(`https://api.thecatapi.com/v1/breeds`, {
+    headers: headers,
+  });
   if (!res.ok) throw new Error("Failed to fetch data");
   return res.json();
 }
 
-export async function getRandomImages(limit: number = 10) {
+export async function getRandomImages(
+  limit: number = 10
+): Promise<BreedResponse[]> {
   const res = await fetch(
     `https://api.thecatapi.com/v1/images/search?limit=${limit}&has_breeds=1`,
     { cache: "no-store", headers: headers }

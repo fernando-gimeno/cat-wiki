@@ -1,11 +1,10 @@
 import Image from "next/image";
-import { Breed } from "../details/interfaces/details-interfaces";
+import { BreedResponse } from "../details/interfaces/details-interfaces";
 import { getRandomImages } from "../libs/the-cat-api";
 import Link from "next/link";
 
 export default async function Discover() {
   const randomImages = await getRandomImages(4);
-  console.log(randomImages);
 
   return (
     <div className="bg-[#E3E1DC] rounded-b-3xl pt-4 pb-14 px-8 sm:px-24">
@@ -15,7 +14,7 @@ export default async function Discover() {
         66+ Breeds For you to discover
       </h3>
       <div className="grid grid-cols-2 justify-center items-center justify-items-center gap-y-8 gap-x-4 sm:grid-cols-3 md:grid-cols-4">
-        {randomImages.map((image: any) => {
+        {randomImages.map((image: BreedResponse) => {
           return (
             <div>
               <Link href={`/details/${image.breeds[0].reference_image_id}`}>
@@ -33,33 +32,6 @@ export default async function Discover() {
             </div>
           );
         })}
-
-        {/* <div>
-          <Image
-            className="aspect-square object-cover rounded-2xl"
-            src={cat2}
-            alt="Image 1"
-          />
-          <p className="font-semibold text-xs text-[#291507]">Savannah</p>
-        </div>
-        <div>
-          <Image
-            className="aspect-square object-cover rounded-2xl"
-            src={cat3}
-            alt="Image 3"
-          />
-          <p className="font-semibold text-xs text-[#291507]">
-            Norwegian Forest Cat
-          </p>
-        </div>
-        <div>
-          <Image
-            className="aspect-square object-cover rounded-2xl"
-            src={cat4}
-            alt="Image 3"
-          />
-          <p className="font-semibold text-xs text-[#291507]">Selkirk Rex</p>
-        </div> */}
       </div>
     </div>
   );

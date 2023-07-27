@@ -1,6 +1,6 @@
-import Hero from "./components/hero";
-import Discover from "./components/discover";
-import WhyShouldHaveCat from "./components/why-should-have-cat";
+import Hero from "./views/hero";
+import Discover from "./views/discover";
+import WhyShouldHaveCat from "./views/why-should-have-cat";
 import { getBreedById } from "./libs/the-cat-api";
 
 export default async function Home() {
