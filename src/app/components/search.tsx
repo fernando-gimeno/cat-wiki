@@ -23,8 +23,9 @@ export default function Search({ breeds }: { breeds: Breed[] }) {
       <Combobox.Input
         onChange={(event) => setQuery(event.target.value)}
         displayValue={(breed: Breed) => breed.name}
+        className="rounded-full p-2"
       />
-      <Combobox.Options className="absolute rounded-2xl h-auto max-h-40 w-80 overflow-y-scroll bg-white">
+      <Combobox.Options className="absolute h-auto max-h-40 w-80 overflow-y-scroll bg-white">
         {filteredBreeds.map((breed) => (
           <Combobox.Option key={breed.id} value={breed} as={Fragment}>
             <Link href={`/details/${breed.reference_image_id}`}>

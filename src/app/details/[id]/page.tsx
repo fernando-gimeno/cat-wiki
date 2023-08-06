@@ -13,7 +13,7 @@ export default async function DetailsPage({
 
   return (
     <main className="mx-4 sm:mx-24">
-      <div className="grid grid-cols-3 gap-8 justify-items-center">
+      <div className="grid grid-cols-1 gap-8 p-2 md:grid-cols-3">
         <Image
           src={breed.url}
           height={breed.height}
