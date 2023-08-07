@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Footer() {
   return (
     <footer className="bg-black mx-4 px-4 py-2 flex flex-col gap-2 justify-center rounded-t-3xl sm:flex-row sm:justify-between sm:items-center sm:mx-24">
@@ -39,8 +41,11 @@ export default function Footer() {
         />
       </svg>
       <p className="font-normal text-xs text-white">
-        &copy; created by <strong>Fernando Gimeno</strong> - devChallenge.io
-        2023
+        &copy; created by{" "}
+        <Link href="https://github.com/fernandouy/">
+          <strong>Fernando Gimeno</strong>
+        </Link>{" "}
+        - devChallenge.io 2023
       </p>
     </footer>
   );

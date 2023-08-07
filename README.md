@@ -69,6 +69,7 @@ Rename .env.template to .env and modify the API key for your own API Key from [T
 Then execute
 
 ```bash
+# Start project
 $ npm start
 ```
 
