@@ -1,86 +1,100 @@
-<h1 align="center">Cat Wiki</h1>
+<h1 align="center">🐱 Cat Wiki</h1>
 
-<div align="center">
-   Solution for a challenge from  <a href="http://devchallenges.io" target="_blank">Devchallenges.io</a>.
-</div>
+<p align="center">
+  A beautifully illustrated feline encyclopedia to discover and compare cat breeds.
+</p>
 
-<div align="center">
-  <h3>
-    <a href="https://cat-wiki-inky-ten.vercel.app">
-      Demo
-    </a>
-    <span> | </span>
-    <a href="https://github.com/fernandouy/cat-wiki">
-      Solution
-    </a>
-    <span> | </span>
-    <a href="https://devchallenges.io/challenges/f4NJ53rcfgrP6sBMD2jt">
-      Challenge
-    </a>
-  </h3>
-</div>
+<p align="center">
+  <a href="https://cat-wiki-inky-ten.vercel.app">Live demo</a>
+</p>
 
-<!-- TABLE OF CONTENTS -->
+---
 
-## Table of Contents
+## 📖 Description
 
-- [Overview](#overview)
-  - [Built With](#built-with)
-- [Features](#features)
-- [How to use](#how-to-use)
-- [Contact](#contact)
-- [Acknowledgements](#acknowledgements)
+**Cat Wiki** is a web application that works as a repository of cat breeds. It lets you explore the different characteristics of each breed —temperament, origin, life expectancy and care traits— through a modern, responsive interface.
 
-<!-- OVERVIEW -->
+The data is fetched in real time from [The Cat API](https://thecatapi.com), and it includes photo galleries per breed, search and a most-searched breeds section.
 
-## Overview
+## ✨ Features
 
-![screenshot](https://i.imgur.com/m8CSv6G.png)
+- **Breed catalog** with detailed traits and characteristics.
+- **Detail page** per breed with a photo gallery and ability metrics.
+- **Breed search**.
+- **"Most Searched Breeds" section** with a selection of feline portraits.
+- **Server-side rendering (SSR)** with revalidation and caching of API requests.
+- **SEO optimized**: metadata, Open Graph, Twitter Cards, `sitemap.ts`, `robots.ts`, `manifest.ts` and JSON-LD structured data.
+- **Responsive design** and image optimization with `sharp`.
 
-"Cat wiki" is a repository of cat breeds where we can see the different characteristics of each breed.
+## 🛠️ Tech stack
 
-### Built With
+- [Next.js 16](https://nextjs.org/) (App Router)
+- [React 19](https://react.dev/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Tailwind CSS 4](https://tailwindcss.com/)
+- [Headless UI](https://headlessui.com/)
+- [Lucide React](https://lucide.dev/)
+- [The Cat API](https://thecatapi.com/)
 
-- [React](https://react.dev/)
-- [Next.js](https://nextjs.org/)
-- [TypeScript](https://typescriptlang.org/)
-- [Tailwind](https://tailwindcss.com/)
+## 🚀 Installation and usage
 
-## Features
-
-This application/site was created as a submission to a [DevChallenges](https://devchallenges.io/challenges) challenge. The [challenge](https://devchallenges.io/challenges/f4NJ53rcfgrP6sBMD2jt) was to build an application to complete the given user stories.
-
-## How To Use
-
-To clone and run this application, you'll need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) (which comes with [npm](http://npmjs.com)) installed on your computer. From your command line:
+You need to have [Git](https://git-scm.com), [Node.js](https://nodejs.org/) and [pnpm](https://pnpm.io/) installed.
 
 ```bash
-# Clone this repository
-$ git clone https://github.com/fernandouy/cat-wiki.git
+# Clone the repository
+git clone https://github.com/fernandouy/cat-wiki.git
+cd cat-wiki
 
 # Install dependencies
-$ npm install
+pnpm install
 ```
 
-### Edit .env.template
+### Environment variables
 
-Rename .env.template to .env and modify the API key for your own API Key from [The Cat API](https://thecatapi.com)
-
-Then execute
+Copy `.env.template` to `.env` and fill in the values:
 
 ```bash
-# Start project
-$ npm start
+cp .env.template .env
 ```
 
-## Acknowledgements
+| Variable               | Description                                                                 |
+| ---------------------- | --------------------------------------------------------------------------- |
+| `CAT_API_KEY`          | API key for [The Cat API](https://thecatapi.com) (required).                |
+| `NEXT_PUBLIC_SITE_URL` | Public site origin for SEO (optional; defaults to `http://localhost:3000`). |
 
-- [Steps to replicate a design with only HTML and CSS](https://devchallenges-blogs.web.app/how-to-replicate-design/)
-- [Node.js](https://nodejs.org/)
-- [HeadlessUI](https://headlessui.com/)
-- [Tailwind CSS IntelliSense](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss)
+### Available scripts
 
-## Contact
+```bash
+# Development environment
+pnpm dev
 
-- Website [fernandouy.github.com](https://fernandouy.github.io/)
-- GitHub [@fernandouy](https://github.com/fernandouy/)
+# Build for production
+pnpm build
+
+# Serve the production build
+pnpm start
+
+# Linting
+pnpm lint
+```
+
+The application will be available at [http://localhost:3000](http://localhost:3000).
+
+## 📁 Project structure
+
+```
+src/app/
+├── components/      # Reusable components (search, breed-card, json-ld...)
+├── details/         # Breed detail page and its components/interfaces
+├── libs/            # The Cat API client and site configuration
+├── views/           # Page sections (hero, discover, footer...)
+├── layout.tsx       # Root layout and metadata
+├── page.tsx         # Main page
+├── sitemap.ts       # Dynamic sitemap
+├── robots.ts        # robots.txt
+└── manifest.ts      # Web App Manifest
+```
+
+## 📬 Contact
+
+- GitHub: [@fernandouy](https://github.com/fernandouy/)
