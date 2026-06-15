@@ -1,54 +1,45 @@
 interface Props {
   title: string;
-  level?: 0 | 1 | 2 | 3 | 4 | 5;
-  text?: string;
+  level: 0 | 1 | 2 | 3 | 4 | 5;
+  index?: number;
 }
 
-export default function Hability(props: Props) {
+const LEVEL_LABELS = [
+  "—",
+  "Minimal",
+  "Low",
+  "Moderate",
+  "High",
+  "Very high",
+] as const;
+
+export default function Hability({ title, level, index = 0 }: Props) {
+  const pct = `${(level / 5) * 100}%`;
+
   return (
-    <div className="inline-flex w-full">
-      <p className="w-36 text-base font-bold mr-2">{props.title}:</p>
-      {props.level ? (
-        <div className="inline-flex items-center">
-          <div
-            className={
-              props.level >= 1
-                ? "w-12 h-2 rounded-full mx-1 bg-slate-600"
-                : "w-12 h-2 rounded-full mx-1 bg-slate-300"
-            }
-          ></div>
-          <div
-            className={
-              props.level >= 2
-                ? "w-12 h-2 rounded-full mx-1 bg-slate-600"
-                : "w-12 h-2 rounded-full mx-1 bg-slate-300"
-            }
-          ></div>
-          <div
-            className={
-              props.level >= 3
-                ? "w-12 h-2 rounded-full mx-1 bg-slate-600"
-                : "w-12 h-2 rounded-full mx-1 bg-slate-300"
-            }
-          ></div>
-          <div
-            className={
-              props.level >= 4
-                ? "w-12 h-2 rounded-full mx-1 bg-slate-600"
-                : "w-12 h-2 rounded-full mx-1 bg-slate-300"
-            }
-          ></div>
-          <div
-            className={
-              props.level >= 5
-                ? "w-12 h-2 rounded-full mx-1 bg-slate-600"
-                : "w-12 h-2 rounded-full mx-1 bg-slate-300"
-            }
-          ></div>
-        </div>
-      ) : (
-        <p>{props.text}</p>
-      )}
+    <div className="py-3.5">
+      <div className="mb-2 flex items-baseline justify-between gap-3">
+        <span className="font-sans text-sm font-medium text-espresso">
+          {title}
+        </span>
+        <span className="font-sans text-[11px] font-semibold uppercase tracking-[0.14em] text-bark/70">
+          {LEVEL_LABELS[level]}
+        </span>
+      </div>
+
+      <div
+        className="relative h-1.5 w-full overflow-hidden rounded-full bg-bark/12"
+        role="meter"
+        aria-valuemin={0}
+        aria-valuemax={5}
+        aria-valuenow={level}
+        aria-label={title}
+      >
+        <div
+          className="trait-fill absolute inset-y-0 left-0 rounded-full bg-linear-to-r from-bark via-amber to-amber-soft"
+          style={{ width: pct, animationDelay: `${300 + index * 60}ms` }}
+        />
+      </div>
     </div>
   );
 }
