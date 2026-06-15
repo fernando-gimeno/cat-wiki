@@ -1,13 +1,15 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  turbopack: {
+    root: __dirname,
+  },
   images: {
-    domains: ["cdn2.thecatapi.com"],
     remotePatterns: [
       {
         protocol: "https",
         hostname: "cdn2.thecatapi.com",
         port: "",
-        pathname: "images/**",
+        pathname: "/images/**",
       },
     ],
   },

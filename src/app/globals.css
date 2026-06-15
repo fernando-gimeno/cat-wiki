@@ -1,6 +1,23 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@theme {
+  /* Typography */
+  --font-display: var(--font-fraunces), Georgia, serif;
+  --font-sans: var(--font-manrope), system-ui, sans-serif;
+
+  /* Brand palette — warm feline editorial */
+  --color-ink: #150a02;
+  --color-espresso: #291507;
+  --color-bark: #4d270c;
+  --color-sand: #e3e1dc;
+  --color-cream: #f7f5f0;
+  --color-amber: #d99a2b;
+  --color-amber-soft: #e9c478;
+
+  /* Motion */
+  --animate-drift: drift 24s ease-in-out infinite;
+  --animate-rise: rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
 
 :root {
   --foreground-rgb: 0, 0, 0;
@@ -8,10 +25,91 @@
   --background-end-rgb: 255, 255, 255;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+body {
+  font-family: var(--font-sans);
+}
+
+/* Entrance reveal — vertical lift */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
   }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Trait meters grow from the left on reveal */
+@keyframes grow-x {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.trait-fill {
+  transform-origin: left;
+  animation: grow-x 1.1s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .trait-fill,
+  .animate-rise {
+    animation: none;
+  }
+}
+
+/* Slow ken-burns drift on the hero photograph */
+@keyframes drift {
+  0%,
+  100% {
+    transform: scale(1.05) translateX(0);
+  }
+  50% {
+    transform: scale(1.12) translateX(-1.5%);
+  }
+}
+
+/* Soft amber pulse for the eyebrow marker */
+@keyframes pulse-glow {
+  0%,
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 0 0 rgba(217, 154, 43, 0.45);
+  }
+  50% {
+    opacity: 0.7;
+    box-shadow: 0 0 0 6px rgba(217, 154, 43, 0);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2.6s ease-in-out infinite;
+}
+
+/* Film grain overlay for atmospheric depth */
+.grain {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Refined thin scrollbar for the results panel */
+.scroll-elegant {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(217, 154, 43, 0.5) transparent;
+}
+.scroll-elegant::-webkit-scrollbar {
+  width: 8px;
+}
+.scroll-elegant::-webkit-scrollbar-thumb {
+  background: rgba(217, 154, 43, 0.45);
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+.scroll-elegant::-webkit-scrollbar-track {
+  background: transparent;
 }
