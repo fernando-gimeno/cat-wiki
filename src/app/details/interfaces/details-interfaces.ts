@@ -17,6 +17,8 @@ export interface Breed {
   origin: string;
   country_codes: string;
   country_code: string;
+  alt_names?: string;
+  breed_group?: string | null;
   description: string;
   life_span: string;
   indoor: HabilityLevel;
