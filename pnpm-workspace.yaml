@@ -1,6 +1,16 @@
 allowBuilds:
-  sharp: true
+  sharp: set this to true or false
   unrs-resolver: true
-onlyBuiltDependencies:
-  - sharp
-  - unrs-resolver
+minimumReleaseAgeExclude:
+  - postcss@8.5.24
+  - postcss@8.5.10
+  - sharp@0.35.0
+  - postcss@8.5.12
+  - postcss@8.5.18
+  - brace-expansion@5.0.8
+overrides:
+  brace-expansion@<=5.0.7: ^5.0.8
+  postcss@<8.5.10: ^8.5.10
+  postcss@<=8.5.11: ^8.5.12
+  postcss@<=8.5.17: ^8.5.18
+  sharp@<0.35.0: ^0.35.0

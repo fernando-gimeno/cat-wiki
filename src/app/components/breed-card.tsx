@@ -11,13 +11,13 @@ export default function BreedCard({
   image: BreedResponse;
   index: number;
 }) {
-  const breed = image.breeds[0];
+  const breed = image.breeds?.[0];
 
   const traits = parseTemperament(breed?.temperament).slice(0, 3);
 
   return (
     <Link
-      href={breedPath(breed?.reference_image_id)}
+      href={breedPath(image.id)}
       aria-label={`Discover the ${breed?.name} breed`}
       className="group animate-rise relative block overflow-hidden rounded-2xl bg-espresso ring-1 ring-bark/25 shadow-[0_12px_32px_-16px_rgba(21,10,2,0.55)] transition-[transform,box-shadow] duration-500 ease-out hover:-translate-y-1.5 hover:shadow-[0_28px_56px_-20px_rgba(21,10,2,0.65)] focus-visible:-translate-y-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber"
       style={{ animationDelay: `${index * 70}ms` }}
