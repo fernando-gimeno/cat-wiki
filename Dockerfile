@@ -4,21 +4,15 @@ ARG NODE_VERSION=26-alpine
 
 # ---------- base ----------
 FROM node:${NODE_VERSION} AS base
-ENV PNPM_HOME=/pnpm \
-    PATH=/pnpm:$PATH \
-    COREPACK_ENABLE_DOWNLOAD_PROMPT=0 \
-    NEXT_TELEMETRY_DISABLED=1
-# Node >= 25 ya no trae corepack: se instala para respetar "packageManager" de package.json
-RUN apk add --no-cache libc6-compat \
- && npm install -g corepack@latest --no-fund --no-audit \
- && corepack enable pnpm
+ENV NEXT_TELEMETRY_DISABLED=1
+RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
 # ---------- deps ----------
 FROM base AS deps
-COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
-RUN --mount=type=cache,id=pnpm,target=/pnpm/store \
-    pnpm install --frozen-lockfile
+COPY package.json package-lock.json ./
+RUN --mount=type=cache,id=npm,target=/root/.npm \
+    npm ci --no-fund --no-audit
 
 # ---------- builder ----------
 FROM base AS builder
@@ -33,7 +27,7 @@ COPY . .
 # --webpack: Turbopack lanza un proceso Node aparte para PostCSS/Tailwind con un
 # timeout fijo de 30s que en VPS con pocos recursos falla
 # ("timed out waiting for the Node.js process to connect").
-RUN pnpm build --webpack
+RUN npm run build -- --webpack
 
 # ---------- runner ----------
 FROM node:${NODE_VERSION} AS runner
