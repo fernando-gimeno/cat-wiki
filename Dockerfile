@@ -30,7 +30,10 @@ ENV NEXT_PUBLIC_SITE_URL=$NEXT_PUBLIC_SITE_URL \
     CAT_API_KEY=$CAT_API_KEY
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
-RUN pnpm build
+# --webpack: Turbopack lanza un proceso Node aparte para PostCSS/Tailwind con un
+# timeout fijo de 30s que en VPS con pocos recursos falla
+# ("timed out waiting for the Node.js process to connect").
+RUN pnpm build --webpack
 
 # ---------- runner ----------
 FROM node:${NODE_VERSION} AS runner
